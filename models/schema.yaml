@@ -1,0 +1,74 @@
+version: 2
+
+sources:
+  - name: raw_epidemia_c19
+    schema: airbyte_schema
+    database: AIRBYTE_DATABASE
+    description: Replicacao demografica de dados da covid-19 disponivel no Google BigQuery.
+    tables:
+      - name: airbyte_index
+        columns: 
+          - name: _airbyte_raw_id
+            description: Coluna com hash id pertecentes a cada registro
+            tests:
+              - unique
+              - not_null
+
+      - name: airbyte_dados_demograficos
+        columns:
+          - name: _airbyte_raw_id
+            description: Coluna com hash id pertecentes a cada registro
+            tests:
+              - unique
+              - not_null
+
+      - name: airbyte_economia
+        columns:
+          - name: _airbyte_raw_id
+            description: Coluna com hash id pertecentes a cada registro
+            tests:
+              - unique
+              - not_null
+
+      - name: airbyte_epidemiologia
+        columns:
+          - name: _airbyte_raw_id
+            description: Coluna com hash id pertecentes a cada registro
+            tests:
+              - unique
+              - not_null
+
+
+models:
+  - name: airbyte_index
+    config:
+      materialized: view
+
+  - name: airbyte_dados_demograficos
+    config:
+      materialized: view
+    columns:
+      - name: location_key
+        tests:
+          - unique
+          - not_null
+
+  - name: airbyte_economia
+    config:
+      materialized: view
+    columns:
+      - name: location_key
+        tests:
+          - unique
+          - not_null
+
+  - name: airbyte_epidemiologia
+    config:
+      tags: ['daily']
+      materialized: view
+    columns:
+      - name: location_key
+        tests:
+          - relationships:
+              to: ref('index')
+              field: location_key
