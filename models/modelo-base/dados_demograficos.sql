@@ -21,7 +21,7 @@ with dados_demograficos as (
         population_age_60_69,
         population_age_70_79,
         population_age_80_and_older
-    from {{ source('raw_epidemia_c19', 'airbyte_dados_demograficos')}}
+    from {{ source('raw_epidemia_c19', 'airbyte_dados_demograficos') }}
 )
 
 select * from dados_demograficos

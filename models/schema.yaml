@@ -4,12 +4,12 @@ sources:
   - name: raw_epidemia_c19
     schema: airbyte_schema
     database: AIRBYTE_DATABASE
-    description: Replicacao demografica de dados da covid-19 disponivel no Google BigQuery.
+    description: A replica of the covid19 demographics data from Google BigQuery Open data.
     tables:
       - name: airbyte_index
-        columns: 
+        columns:
           - name: _airbyte_raw_id
-            description: Coluna com hash id pertecentes a cada registro
+            description: Hash column based on the values in the record.
             tests:
               - unique
               - not_null
@@ -17,7 +17,7 @@ sources:
       - name: airbyte_dados_demograficos
         columns:
           - name: _airbyte_raw_id
-            description: Coluna com hash id pertecentes a cada registro
+            description: Hash column based on the values in the record.
             tests:
               - unique
               - not_null
@@ -25,7 +25,7 @@ sources:
       - name: airbyte_economia
         columns:
           - name: _airbyte_raw_id
-            description: Coluna com hash id pertecentes a cada registro
+            description: Hash column based on the values in the record.
             tests:
               - unique
               - not_null
@@ -33,16 +33,17 @@ sources:
       - name: airbyte_epidemiologia
         columns:
           - name: _airbyte_raw_id
-            description: Coluna com hash id pertecentes a cada registro
+            description: Hash column based on the values in the record.
             tests:
               - unique
               - not_null
 
 
+
 models:
   - name: index
     config:
-      materialized: view
+      materialized: view  
 
   - name: dados_demograficos
     config:
@@ -61,7 +62,7 @@ models:
         tests:
           - unique
           - not_null
-
+ 
   - name: epidemiologia
     config:
       tags: ['daily']
@@ -70,5 +71,5 @@ models:
       - name: location_key
         tests:
           - relationships:
-              to: ref('index')
+              to: ref('base_index')
               field: location_key
