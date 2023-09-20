@@ -17,7 +17,7 @@ with index as (
         aggregation_level,
         iso_3166_1_alpha_2,
         iso_3166_1_alpha_3
-    from {{ source('airbyte_index')}}
+    from {{ source('raw_epidemia_c19', 'airbyte_index')}}
 )
 
 select * from index

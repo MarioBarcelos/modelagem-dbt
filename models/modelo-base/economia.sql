@@ -6,7 +6,7 @@ with economia as (
         location_key,
         gdp_per_capita_usd,
         human_capital_index
-    from {{ source('airbyte_economia') }}
+    from {{ source('raw_epidemia_c19', 'airbyte_economia') }}
 
 )
 

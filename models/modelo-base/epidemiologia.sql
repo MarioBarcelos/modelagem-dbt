@@ -12,7 +12,7 @@ with epidemiologia as (
         cumulative_deceased,
         cumulative_recovered,
         cumulative_tested
-    from {{ source('airbyte_epidemiologia') }}
+    from {{ source('raw_epidemia_c19', 'airbyte_epidemiologia') }}
 )
 
 select * from epidemiologia
