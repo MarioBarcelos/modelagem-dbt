@@ -40,20 +40,11 @@ sources:
 
 
 models:
-  - name: airbyte_index
+  - name: index
     config:
       materialized: view
 
-  - name: airbyte_dados_demograficos
-    config:
-      materialized: view
-    columns:
-      - name: location_key
-        tests:
-          - unique
-          - not_null
-
-  - name: airbyte_economia
+  - name: dados_demograficos
     config:
       materialized: view
     columns:
@@ -62,7 +53,16 @@ models:
           - unique
           - not_null
 
-  - name: airbyte_epidemiologia
+  - name: economia
+    config:
+      materialized: view
+    columns:
+      - name: location_key
+        tests:
+          - unique
+          - not_null
+
+  - name: epidemiologia
     config:
       tags: ['daily']
       materialized: view
