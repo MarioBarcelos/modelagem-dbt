@@ -11,7 +11,7 @@ with epidemiologia as (
         cumulative_confirmed,
         cumulative_deceased,
         cumulative_recovered,
-        cumulative_tested
+        cumulative_tested 
     from {{ source('raw_epidemia_c19', 'airbyte_epidemiologia') }}
 )
 
