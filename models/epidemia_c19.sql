@@ -1,4 +1,4 @@
-{{ config(materialized 'table')}}
+{{ config(materialized = 'table')}}
 
 with epidemiologia as (
 
@@ -38,7 +38,7 @@ epidemiologia_join as (
         economia.gdp_per_capita_usd,
         economia.human_capital_index,
         dados_demograficos.population,
-        dados_demograficos.pupulation_male,
+        dados_demograficos.population_male,
         dados_demograficos.population_female,
         dados_demograficos.population_rural,
         dados_demograficos.population_urban,
