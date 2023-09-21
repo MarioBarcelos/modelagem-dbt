@@ -1,4 +1,4 @@
-proj_epidemia_c19:
+snowflake-dw:
   target: dev
   outputs:
     dev:
