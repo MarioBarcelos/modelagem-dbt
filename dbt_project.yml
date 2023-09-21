@@ -1,6 +1,6 @@
 name: 'proj_epidemia_c19'
 config-version: 2
-version: '0.1'
+version: '1.0.0'
 
 
 # This setting configures which "profile" dbt uses for this project.
