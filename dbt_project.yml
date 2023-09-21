@@ -1,7 +1,3 @@
-
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
 name: 'proj_epidemia_c19'
 config-version: 2
 version: '0.1'
@@ -34,5 +30,6 @@ require-dbt-version: [">=1.0.0", "<2.0.0"]
 # using the `{{ config(...) }}` macro.
 models:
   proj_epidemia_c19:
-    # Applies to all files under models/example/
-    materialized: view
+    events:
+      +enabled: true
+      +materialized: view
