@@ -1,13 +1,13 @@
-with economia as (
+with base_economy as (
 
-    select
+    select 
         _airbyte_raw_id,
         gdp_usd,
         location_key,
         gdp_per_capita_usd,
         human_capital_index 
-    from {{ source('raw_epidemia_c19', 'airbyte_economia') }}
+    from {{ source('raw_covid19', 'economy') }}
 
 )
 
-select * from economia
+select * from base_economy
