@@ -1,12 +1,12 @@
 version: 2
 
 sources:
-  - name: raw_epidemia_c19
+  - name: raw_covid19
     schema: airbyte_schema
     database: AIRBYTE_DATABASE
     description: A replica of the covid19 demographics data from Google BigQuery Open data.
     tables:
-      - name: airbyte_index
+      - name: index
         columns:
           - name: _airbyte_raw_id
             description: Hash column based on the values in the record.
@@ -14,7 +14,7 @@ sources:
               - unique
               - not_null
 
-      - name: airbyte_dados_demograficos
+      - name: demographics
         columns:
           - name: _airbyte_raw_id
             description: Hash column based on the values in the record.
@@ -22,30 +22,20 @@ sources:
               - unique
               - not_null
 
-      - name: airbyte_economia
+      - name: economy
         columns:
           - name: _airbyte_raw_id
             description: Hash column based on the values in the record.
             tests:
               - unique
               - not_null
-
-      - name: airbyte_epidemiologia
-        columns:
-          - name: _airbyte_raw_id
-            description: Hash column based on the values in the record.
-            tests:
-              - unique
-              - not_null
-
-
 
 models:
-  - name: index
+  - name: base_index
     config:
       materialized: view  
 
-  - name: dados_demograficos
+  - name: base_demographics
     config:
       materialized: view
     columns:
@@ -54,7 +44,7 @@ models:
           - unique
           - not_null
 
-  - name: economia
+  - name: base_economy
     config:
       materialized: view
     columns:
@@ -62,14 +52,83 @@ models:
         tests:
           - unique
           - not_null
+
+
+
+
+
+# version: 2
+
+# sources:
+#   - name: raw_epidemia_c19
+#     schema: airbyte_schema
+#     database: AIRBYTE_DATABASE
+#     description: A replica of the covid19 demographics data from Google BigQuery Open data.
+#     tables:
+#       - name: airbyte_index
+#         columns:
+#           - name: _airbyte_raw_id
+#             description: Hash column based on the values in the record.
+#             tests:
+#               - unique
+#               - not_null
+
+#       - name: airbyte_dados_demograficos
+#         columns:
+#           - name: _airbyte_raw_id
+#             description: Hash column based on the values in the record.
+#             tests:
+#               - unique
+#               - not_null
+
+#       - name: airbyte_economia
+#         columns:
+#           - name: _airbyte_raw_id
+#             description: Hash column based on the values in the record.
+#             tests:
+#               - unique
+#               - not_null
+
+#       - name: airbyte_epidemiologia
+#         columns:
+#           - name: _airbyte_raw_id
+#             description: Hash column based on the values in the record.
+#             tests:
+#               - unique
+#               - not_null
+
+
+
+# models:
+#   - name: index
+#     config:
+#       materialized: view  
+
+#   - name: dados_demograficos
+#     config:
+#       materialized: view
+#     columns:
+#       - name: location_key
+#         tests:
+#           - unique
+#           - not_null
+
+#   - name: economia
+#     config:
+#       materialized: view
+#     columns:
+#       - name: location_key
+#         tests:
+#           - unique
+#           - not_null
  
-  - name: epidemiologia
-    config:
-      tags: ['daily']
-      materialized: view
-    columns:
-      - name: location_key
-        tests:
-          - relationships:
-              to: ref('base_index')
-              field: location_key
+#   - name: epidemiologia
+#     config:
+#       tags: ['daily']
+#       materialized: view
+#     columns:
+#       - name: location_key
+#         tests:
+#           - relationships:
+#               to: ref('base_index')
+#               field: location_key

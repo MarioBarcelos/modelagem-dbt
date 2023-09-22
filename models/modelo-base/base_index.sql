@@ -1,4 +1,4 @@
-with index as (
+with base_index as (
 
     select 
         _airbyte_raw_id,
@@ -17,7 +17,8 @@ with index as (
         aggregation_level, 
         iso_3166_1_alpha_2,
         iso_3166_1_alpha_3
-    from {{ source('raw_epidemia_c19', 'airbyte_index') }}
+    from {{ source('raw_covid19', 'index') }}
+
 )
 
-select * from index
+select * from base_index
