@@ -7,7 +7,7 @@ snowflake-dw:
 
       # User/password auth
       user: AIRBYTE_USER
-      password: AIRBYTE_PASSWORD
+      password: password
 
       role: AIRBYTE_ROLE
       database: AIRBYTE_DATABASE
