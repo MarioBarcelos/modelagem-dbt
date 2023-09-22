@@ -4,8 +4,7 @@ config-version: 2
 
 
 profile: 'snowflake-dw'
-# dbt_project.yml
-packages-install-path: '../dbt_packages'
+
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
