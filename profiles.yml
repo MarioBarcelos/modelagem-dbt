@@ -3,11 +3,19 @@ snowflake-dw:
   outputs:
     dev:
       type: snowflake
+<<<<<<< HEAD
       account: cp26002.us-central1.gcp
 
       # User/password auth
       user: AIRBYTE_USER
       password: password
+=======
+      account: *******.us-central1.gcp
+
+      # User/password auth
+      user: AIRBYTE_USER
+      password: ****************
+>>>>>>> ad110b4645063af9035ebee06d561fd741a827a5
 
       role: AIRBYTE_ROLE
       database: AIRBYTE_DATABASE
